@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.11.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+
+    <changeSet id="1" author="olzhas">
+        <insert tableName="sender_type">
+            <column name="id">1</column>
+            <column name="name">mail.ru</column>
+            <column name="host">smtp.mail.ru</column>
+            <column name="port">465</column>
+        </insert>
+        <insert tableName="sender_type">
+            <column name="id">2</column>
+            <column name="name">gmail</column>
+            <column name="host">smtp.gmail.com</column>
+            <column name="port">587</column>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

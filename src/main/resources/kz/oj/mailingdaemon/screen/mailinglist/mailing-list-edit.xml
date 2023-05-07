@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://mailingListEdit.caption"
+        focusComponent="form">
+    <data>
+        <instance id="mailingListDc"
+                  class="kz.oj.mailingdaemon.entity.MailingList">
+            <fetchPlan extends="_base">
+                <property name="mails" fetchPlan="_base"/>
+                <property name="sender" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader/>
+            <collection id="mailsDc" property="mails"/>
+            <collection id="attachmentsDc" property="attachments"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="windowCommitAndClose" caption="msg:///actions.Ok"
+                icon="EDITOR_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="windowClose"
+                caption="msg:///actions.Close"
+                icon="EDITOR_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout spacing="true" expand="editActions">
+        <form id="form" dataContainer="mailingListDc">
+            <column width="350px">
+                <textField id="nameField" property="name"/>
+                <textField id="subjectField" property="subject"/>
+                <entityPicker id="senderField" property="sender">
+                    <actions>
+                        <action id="entityLookup" type="entity_lookup"/>
+                        <action id="entityClear" type="entity_clear"/>
+                    </actions>
+                </entityPicker>
+                <fileStorageUpload id="recipientsFileField" property="recipientsFile" permittedExtensions=".xlsx"/>
+                <fileStorageUpload id="mailTemplateField" property="mailTemplate" permittedExtensions=".html"/>
+                <comboBox id="status" property="status" editable="false"/>
+                <dateField id="creationDate" property="creationDate" editable="false"/>
+            </column>
+        </form>
+        <groupBox id="attachmentsBox">
+            <table id="attachmentsTable" dataContainer="attachmentsDc" width="100%" height="200px">
+                <actions>
+                    <action id="create" type="create"/>
+                    <action id="remove" type="remove"/>
+                </actions>
+                <columns>
+                    <column id="fileRef"/>
+                </columns>
+                <buttonsPanel id="buttonsPanel" alwaysVisible="true">
+                    <button id="createBtn" action="attachmentsTable.create"/>
+                    <button id="removeBtn" action="attachmentsTable.remove"/>
+                </buttonsPanel>
+            </table>
+        </groupBox>
+        <groupBox id="mailsBox" caption="msg://kz.oj.mailingdaemon.entity/MailingList.mails">
+            <table id="mailsTable" dataContainer="mailsDc" width="100%" height="200px">
+                <columns>
+                    <column id="recipient"/>
+                    <column id="status"/>
+                </columns>
+            </table>
+        </groupBox>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

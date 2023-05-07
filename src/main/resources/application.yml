@@ -1,0 +1,24 @@
+jmix:
+  core:
+    available-locales: ru
+  ui:
+    composite-menu: true
+    login-screen-id: LoginScreen
+    main-screen-id: MainScreen
+    menu-config: kz/oj/mailingdaemon/menu.xml
+logging:
+  level:
+    eclipselink:
+      logging:
+        sql: info
+    io:
+      jmix: info
+      jmix.core.AccessLogger: debug
+      jmix.core.datastore: info
+    org:
+      atmosphere: warn
+main:
+  datasource:
+    password: ''
+    url: jdbc:hsqldb:file:.jmix/hsqldb/mailingdaemon
+    username: sa
