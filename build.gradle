@@ -5,7 +5,7 @@ plugins {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'kz.oj.MailingDaemon'
+        attributes 'Main-Class': 'kz.oj.mailingdaemon.MailingDaemonApplication'
     }
 }
 
